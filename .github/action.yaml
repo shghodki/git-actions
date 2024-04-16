@@ -1,0 +1,48 @@
+name: Build and publish docker image
+on:
+  workflow_dispatch:
+    inputs:
+      application:
+        description: 'Application to build'
+        required: true
+        default: 'test'
+        options:
+          - app1
+          - app2
+          - app3
+          - app4
+          - app5
+          - app6
+      application:
+        description: 'Application version'
+        required: true
+        type: string
+        default: 'latest'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+
+env:
+  BASE_IMAGE_VERSION: "1.0.0"
+  APPLICATION: "app1"
+  APPLICATION_VERSION: "latest"
+
+jobs:
+  build_and_publish:
+    name: Build and publish
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
+      - name: Check Application Versions
+        run: |
+           echo "working"
+      #   run: |
+      #     echo "Build docker image..."
+      #     docker build ./arctic_docker -t "$DOCKER_REGISTRY_URL/$DOCKER_REPOSITORY_NAME/$IMAGE_NAME:$VERSION" \
+      #       --build-arg MICROSERVICE_BASE_IMAGE_VERSION=$BASE_IMAGE_VERSION \
+      #       --build-arg MICROSERVICE_BASE_IMAGE=$DOCKER_REGISTRY_URL/$DOCKER_REPOSITORY_NAME/$BASE_IMAGE_NAME \
+      #       --build-arg APP_NAME=$APPLICATION
+      # - name: Docker publish
+      #   run: |
+      #     echo "Publish docker image..."
+      #     docker push "$DOCKER_REGISTRY_URL/$DOCKER_REPOSITORY_NAME/$IMAGE_NAME:$VERSION"
