@@ -5,7 +5,8 @@ on:
       application:
         description: 'Application to build'
         required: true
-        default: 'test'
+        type: choice
+        default: 'app1'
         options:
           - app1
           - app2
