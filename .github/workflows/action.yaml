@@ -35,8 +35,11 @@ jobs:
     steps:
       - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
       - name: Check Application Versions
+        env:
+          application: ${{github.event.inputs.application}}
+          version: ${{github.event.inputs.version}}
         run: |
-           echo "working"
+           echo "$application and $version"
       #   run: |
       #     echo "Build docker image..."
       #     docker build ./arctic_docker -t "$DOCKER_REGISTRY_URL/$DOCKER_REPOSITORY_NAME/$IMAGE_NAME:$VERSION" \
