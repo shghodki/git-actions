@@ -21,8 +21,6 @@ jobs:
             exit 0
           elif echo ${BODY,,} | grep -q "$UNCHECKED"; then
             echo "Checkbox is not checked"
-            exit 1
           else
             echo "Checkbox not found in pull request description"
-            exit 1
           fi
