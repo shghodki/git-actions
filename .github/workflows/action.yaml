@@ -16,10 +16,10 @@ jobs:
           UNCHECKED="\[ \] execute end to end test"
           MARKED="\[x\] execute end to end test"
            if echo ${description,,} | grep -q "$MARKED"; then
-            echo "Checkbox is checked"
+            echo "test execution code goes here..."
             exit 0
           elif echo ${description,,} | grep -q "$UNCHECKED"; then
-            echo "Checkbox is not checked"
+            echo "Checkbox is not checked.. skip execution.."
           else
             echo "Checkbox not found in pull request description"
             exit 1
