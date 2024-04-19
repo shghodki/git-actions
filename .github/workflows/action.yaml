@@ -12,8 +12,8 @@ jobs:
       - name: execute test case
         run: |
           description="${{ github.event.pull_request.body }}"
-          UNCHECKED="\[ \] Execute Test cases"
-          MARKED="\[x\] Execute Test cases"
+          UNCHECKED="\[ \] execute test cases"
+          MARKED="\[x\] execute test cases"
           echo ${description,,} | grep  "$MARKED"
           echo "##########################33"
            if echo ${description,,} | grep -q "$MARKED"; then
