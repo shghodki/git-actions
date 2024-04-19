@@ -1,8 +1,7 @@
 name: Execute test cases
 on:
-  push:
-   branches:
-     - main
+  pull_request:
+    types: [opened, edited]
 
 jobs:
   excute-test-cases:
