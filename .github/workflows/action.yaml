@@ -13,8 +13,8 @@ jobs:
       - name: execute test case
         run: |
           description="${{ github.event.pull_request.body }}"
-          UNCHECKED="\[ \] execute test cases"
-          MARKED="\[x\] execute test cases"
+          UNCHECKED="\[ \] execute end to end test"
+          MARKED="\[x\] execute end to end test"
            if echo ${description,,} | grep -q "$MARKED"; then
             echo "Checkbox is checked"
             exit 0
