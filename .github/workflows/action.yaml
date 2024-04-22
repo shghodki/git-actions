@@ -1,7 +1,7 @@
 name: Add Comment to Issue
 
 on:
-  issues:
+  pull_request:
     types: [opened, reopened]  # Triggers when a new issue is opened or an existing one is reopened
 
 jobs:
