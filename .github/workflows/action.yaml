@@ -1,26 +1,22 @@
-name: Execute test cases
+name: Add Comment to Issue
+
 on:
-  pull_request:
-    types: [closed]
+  issues:
+    types: [opened, reopened]  # Triggers when a new issue is opened or an existing one is reopened
 
 jobs:
-  excute-test-cases:
-    name: excute-test-cases
-    if: github.event.pull_request.merged == true
+  add-comment:
     runs-on: ubuntu-latest
+    permissions:
+      issues: write
     steps:
-      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
-      - name: execute test case
-        run: |
-          description="${{ github.event.pull_request.body }}"
-          UNCHECKED="\[ \] execute end to end test"
-          MARKED="\[x\] execute end to end test"
-           if echo ${description,,} | grep -q "$MARKED"; then
-            echo "test execution code goes here..."
-            exit 0
-          elif echo ${description,,} | grep -q "$UNCHECKED"; then
-            echo "Checkbox is not checked.. skip execution.."
-          else
-            echo "Checkbox not found in pull request description"
-            exit 1
-          fi
+      - name: Add comment
+        run: gh issue comment "$NUMBER" --body "$BODY"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_REPO: ${{ github.repository }}
+          NUMBER: ${{ github.event.issue.number }}
+          BODY: >
+            This issue is available for anyone to work on.
+            **Make sure to reference this issue in your pull request.**
+            :sparkles: Thank you for your contribution! :sparkles:
