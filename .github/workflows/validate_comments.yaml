@@ -13,7 +13,7 @@ jobs:
       deployments: write
       contents: write
       checks: write
-    if: ${{ github.event.issue.pull_request && contains(github.event.comment.body, '.deploy')}}
+    if: ${{ github.event.issue.pull_request && contains(github.event.comment.body, 'execute_test_case: true')}}
 
     steps:
       - name: checkout to main
@@ -25,12 +25,10 @@ jobs:
         COMMENT_BODY: ${{github.event.comment.body}}
         id: validate-comment
         run: |
-            if [[ "$COMMENT_BODY" == "execute_test_case: true"* ]]; then
              if [[ "$COMMENT_BODY" == *"ibe"* ]]; then
              comment_validated=passed" >> "${GITHUB_OUTPUT}"
             else
              comment_validated=failed" >> "${GITHUB_OUTPUT}"
-            fi
             fi
 
       - name: issue comment
