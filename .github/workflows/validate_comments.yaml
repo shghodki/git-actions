@@ -5,7 +5,7 @@ on:
 
 jobs:
   process-comment:
-    if: ${{ github.event.issue.pull_request && contains(github.event.comment.body, 'execute_test_case: true')}}
+    if: ${{ github.event.issue.pull_request && contains(github.event.comment.body, "execute_test_case")}}
     runs-on: ubuntu-latest
     permissions:
       pull-requests: write
@@ -26,9 +26,9 @@ jobs:
       run: |
             if [[ "$COMMENT_BODY" == *"ibe"* ]]; then
             comment_validated=passed" >> "${GITHUB_OUTPUT}"
-          else
+            else
             comment_validated=failed" >> "${GITHUB_OUTPUT}"
-          fi
+            fi
 
     - name: issue comment
       if: ${{ steps.validate-comment.outputs.comment_validated == 'failed' }}
