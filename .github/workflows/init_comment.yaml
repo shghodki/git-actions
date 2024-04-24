@@ -1,11 +1,11 @@
-name: Execute test cases
+name: Write first comment
 on:
   pull_request:
     types: [opened, reopened]
 
 jobs:
-  excute-test-cases:
-    name: excute-test-cases
+  write-first-comment:
+    name: write-first-comment
     runs-on: ubuntu-latest
     permissions:
       pull-requests: write
@@ -25,7 +25,7 @@ jobs:
               body: `please put a comment to exectute test cases in below format. 
                      If the below comment is not present test case will not be executed.
                      <comment body starts>
-                     exectute_test_case: true
+                     exectute_test_case
                      extra_configs:
                       iac.properties: true
                       iace.bla_bla: true
