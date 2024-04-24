@@ -28,4 +28,5 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo
             })
+             console.log("this is the log")
              console.log(comments)
