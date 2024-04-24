@@ -13,7 +13,7 @@ jobs:
       deployments: write
       contents: write
       checks: write
-    if: ${{ github.event.issue.pull_request && contains(github.event.comment.body, 'execute_test_case: true')}}
+    if: ${{ github.event.issue.pull_request && contains(github.event.comment.body, "execute_test_case")}}
 
     steps:
       - name: checkout to main
