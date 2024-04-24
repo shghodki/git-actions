@@ -32,7 +32,8 @@ jobs:
                 });
                 
                 const comments = response.data; // Assuming the response contains data array with comments
-                return comments;
+                const filteredComments = comments.filter(comment => comment.body.startsWith("execute_test_case"));
+                return filteredComments;
             } catch (error) {
                 console.error("Error fetching comments:", error);
                 return []; // Return an empty array or handle the error as needed
