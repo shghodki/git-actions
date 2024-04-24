@@ -46,7 +46,7 @@ jobs:
              return "false"
             }
       - name: Get result
-        if: ${{ steps.search-execution-comment.outputs.result != 'false' }}
+        if: steps.search-execution-comment.outputs.result != 'false'
         run: |
              echo "execute test case code goes here"
              echo "${{steps.search-execution-comment.outputs.result}}"
