@@ -25,9 +25,9 @@ jobs:
       id: validate-comment
       run: |
             if [[ "$COMMENT_BODY" == *"ibe"* ]]; then
-            comment_validated=passed" >> "${GITHUB_OUTPUT}"
+            "comment_validated=passed" >> "${GITHUB_OUTPUT}"
             else
-            comment_validated=failed" >> "${GITHUB_OUTPUT}"
+            "comment_validated=failed" >> "${GITHUB_OUTPUT}"
             fi
 
     # - name: issue comment
