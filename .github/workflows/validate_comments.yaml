@@ -41,5 +41,3 @@ jobs:
             issue_number: ${{ github.event.issue.number }},
             body: "invalid environment. Please check if application and cluster names are typed correctly."
             })
-    
-    # Add your steps here to process the comment
