@@ -32,7 +32,7 @@ jobs:
 
     - name: invalid environment
       env:
-        comment_v: ${{ steps.validate-comment.outputs.comment_validated
+        comment_v: ${{ steps.validate-comment.outputs.comment_validated }}
       run: | 
           echo $comment_v
       # if: ${{ steps.validate-comment.outputs.comment_validated == 'falied' }}
