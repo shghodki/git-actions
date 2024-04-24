@@ -30,14 +30,13 @@ jobs:
             echo "comment_validated=failed" >> "${GITHUB_OUTPUT}"
             fi
 
-    - name: issue comment
-      if: ${{ steps.validate-comment.outputs.comment_validated == 'failed' }}
-      uses: actions/github-script@v6
+    - uses: actions/github-script@v7
       with:
+        github-token: ${{secrets.GITHUB_TOKEN}}
         script: |
-            github.rest.issues.createComment({
+          github.rest.issues.createComment({
+            issue_number: context.issue.number,
             owner: context.repo.owner,
             repo: context.repo.repo,
-            issue_number: ${{ github.event.issue.number }},
-            body: "invalid environment. Please check if application and cluster names are typed correctly."
-            })
+            body: 'validation failed'
+          })
