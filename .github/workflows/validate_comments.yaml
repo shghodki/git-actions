@@ -12,6 +12,6 @@ jobs:
       
     - name: Print the comment body
       run: |
-      echo "Comment body: ${{ github.event.comment.body }}"
+           echo "Comment body: ${{ github.event.comment.body }}"
       
     # Add your steps here to process the comment
