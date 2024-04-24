@@ -16,10 +16,8 @@ jobs:
     if: ${{ github.event.issue.pull_request && contains(github.event.comment.body, "execute_test_case")}}
 
     steps:
-      - name: checkout to main
-        uses: actions/checkout@v3
-        with:
-          ref: main
+      - name: checkout
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
       - name: validate comment
         env:
         COMMENT_BODY: ${{github.event.comment.body}}
