@@ -9,14 +9,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
-      - uses: actions/github-script@v7
-        id: set-result
-        
+      - name: issue comment
+        uses: actions/github-script@v7
         with:
-            result-encoding: string
-            script: |
-            github.rest.issues.get({
-            issue_number: context.issue.number,
-            owner: context.repo.owner,
-            repo: context.repo.repo,
-                   })
+          script: |
+              github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: "invalid environment. Please check if application and cluster names are typed correctly."
+              })
+              
