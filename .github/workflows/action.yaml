@@ -7,9 +7,14 @@ jobs:
   excute-test-cases:
     name: excute-test-cases
     runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+      deployments: write
+      contents: write
+      checks: write
     steps:
       - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
-      - uses: actions/github-script@v5
+      - uses: actions/github-script@v7
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}
           script: |
