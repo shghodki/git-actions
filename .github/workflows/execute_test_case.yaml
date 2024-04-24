@@ -23,10 +23,20 @@ jobs:
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}
           script: |
-           comments :=  github.rest.issues.listComments({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo
-            })
-             console.log("this is the log")
-             console.log(comments)
+           async function getComments() {
+            try {
+                const response = await github.rest.issues.listComments({
+                    issue_number: context.issue.number,
+                    owner: context.repo.owner,
+                    repo: context.repo.repo
+                });
+                
+                const comments = response.data; // Assuming the response contains data array with comments
+                return comments;
+            } catch (error) {
+                console.error("Error fetching comments:", error);
+                return []; // Return an empty array or handle the error as needed
+            }
+           }
+            const comments = await getComments();
+            console.log(comments); // Do whatever you want with the comments array
