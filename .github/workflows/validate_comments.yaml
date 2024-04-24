@@ -5,7 +5,13 @@ on:
 
 jobs:
   process-comment:
+    if: ${{ github.event.issue.pull_request && contains(github.event.comment.body, "execute_test_case")}}
     runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+      deployments: write
+      contents: write
+      checks: write
     steps:
     - name: Check out repository
       uses: actions/checkout@v2
@@ -13,5 +19,25 @@ jobs:
     - name: Print the comment body
       run: |
            echo "Comment body: ${{ github.event.comment.body }}"
-      
-    # Add your steps here to process the comment
+    - name: validate comment
+      env:
+      COMMENT_BODY: ${{github.event.comment.body}}
+      id: validate-comment
+      run: |
+            if [[ "$COMMENT_BODY" == *"ibe"* ]]; then
+            comment_validated=passed" >> "${GITHUB_OUTPUT}"
+            else
+            comment_validated=failed" >> "${GITHUB_OUTPUT}"
+            fi
+
+    - name: issue comment
+      if: ${{ steps.validate-comment.outputs.comment_validated == 'failed' }}
+      uses: actions/github-script@v6
+      with:
+        script: |
+            github.rest.issues.createComment({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            issue_number: ${{ github.event.issue.number }},
+            body: "invalid environment. Please check if application and cluster names are typed correctly."
+            })
