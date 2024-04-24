@@ -43,7 +43,7 @@ jobs:
             if (comments.length === 1) {
             return comments[0].body
             } else {
-             return "false"
+             return 'false'
             }
       - name: Get result
         if: steps.search-execution-comment.outputs.result != 'false'
