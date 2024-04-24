@@ -40,4 +40,11 @@ jobs:
             }
            }
             const comments = await getComments();
-            console.log(comments); // Do whatever you want with the comments array
+            if (comments.length === 1) {
+            return comments[0].body
+            } else {
+             return "false"
+            }
+      - name: Get result
+        run: |
+             echo "${{steps.search-execution-comment.outputs.result}}"
