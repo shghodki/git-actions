@@ -5,7 +5,7 @@ on:
 
 jobs:
   process-comment:
-    if: ${{ github.event.issue.pull_request && contains(github.event.comment.body, "execute_test_case")}}
+    if: ${{ github.event.issue.pull_request && contains(github.event.comment.body, 'execute_test_case')}}
     runs-on: ubuntu-latest
     permissions:
       pull-requests: write
