@@ -18,28 +18,28 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
-      - name: validate comment
-        env:
-        COMMENT_BODY: ${{github.event.comment.body}}
-        id: validate-comment
-        run: |
-             if [[ "$COMMENT_BODY" == *"ibe"* ]]; then
-             comment_validated=passed" >> "${GITHUB_OUTPUT}"
-            else
-             comment_validated=failed" >> "${GITHUB_OUTPUT}"
-            fi
+      # - name: validate comment
+      #   env:
+      #   COMMENT_BODY: ${{github.event.comment.body}}
+      #   id: validate-comment
+      #   run: |
+      #        if [[ "$COMMENT_BODY" == *"ibe"* ]]; then
+      #        comment_validated=passed" >> "${GITHUB_OUTPUT}"
+      #       else
+      #        comment_validated=failed" >> "${GITHUB_OUTPUT}"
+      #       fi
 
-      - name: issue comment
-        if: ${{ steps.validate-comment.outputs.comment_validated == 'failed' }}
-        uses: actions/github-script@v6
-        with:
-          script: |
-              github.rest.issues.createComment({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              issue_number: ${{ github.event.issue.number }},
-              body: "invalid environment. Please check if application and cluster names are typed correctly."
-              })
+      # - name: issue comment
+      #   if: ${{ steps.validate-comment.outputs.comment_validated == 'failed' }}
+      #   uses: actions/github-script@v6
+      #   with:
+      #     script: |
+      #         github.rest.issues.createComment({
+      #         owner: context.repo.owner,
+      #         repo: context.repo.repo,
+      #         issue_number: ${{ github.event.issue.number }},
+      #         body: "invalid environment. Please check if application and cluster names are typed correctly."
+      #        })
             
 
      
