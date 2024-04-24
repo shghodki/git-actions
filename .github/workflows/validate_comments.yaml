@@ -21,7 +21,7 @@ jobs:
            echo "Comment body: ${{ github.event.comment.body }}"
     - name: validate comment
       env:
-      COMMENT_BODY: ${{github.event.comment.body}}
+        COMMENT_BODY: ${{github.event.comment.body}}
       id: validate-comment
       run: |
             if [[ "$COMMENT_BODY" == *"ibe"* ]]; then
