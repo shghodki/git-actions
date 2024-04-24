@@ -31,7 +31,7 @@ jobs:
             fi
 
     - name: invalid environment
-      if: ${{ steps.validate-comment.outputs.comment_validated == 'falied' }}
+      if: ${{ steps.validate-comment.outputs.comment_validated == 'failed' }}
       uses: actions/github-script@v7
       with:
         github-token: ${{secrets.GITHUB_TOKEN}}
