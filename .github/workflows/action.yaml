@@ -22,7 +22,7 @@ jobs:
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: 'please put a comment to exectute test cases in below format. 
+              body: `please put a comment to exectute test cases in below format. 
                      If the below comment is not present test case will not be executed.
                      <comment body starts>
                      exectute_test_case: true
@@ -30,6 +30,6 @@ jobs:
                       iac.properties: true
                       iace.bla_bla: true
                       <comment body ends>
-                      If there are duplicate comments containing exectute_test_case: true, test execution will not performed'
+                      If there are duplicate comments containing exectute_test_case: true, test execution will not performed`
             })
               
