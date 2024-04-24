@@ -31,13 +31,17 @@ jobs:
             fi
 
     - name: invalid environment
-      if: ${{ steps.validate-comment.outputs.comment_validated == 'falied' }}
-      uses: actions/github-script@v6
-      with:
-        script: |
-            github.rest.issues.createComment({
-            owner: context.repo.owner,
-            repo: context.repo.repo,
-            issue_number: ${{ github.event.issue.number }},
-            body: "invalid ibe properties."
-            })
+      env:
+        comment_v: ${{ steps.validate-comment.outputs.comment_validated
+      run: | 
+          echo $comment_v
+      # if: ${{ steps.validate-comment.outputs.comment_validated == 'falied' }}
+      # uses: actions/github-script@v6
+      # with:
+      #   script: |
+      #       github.rest.issues.createComment({
+      #       owner: context.repo.owner,
+      #       repo: context.repo.repo,
+      #       issue_number: ${{ github.event.issue.number }},
+      #       body: "invalid ibe properties."
+      #       })
