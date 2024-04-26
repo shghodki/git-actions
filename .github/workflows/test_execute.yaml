@@ -1,6 +1,6 @@
 name: Sanity Test Workflow
 on:
-  issues:
+  pull_request:
     types: [labeled]
 jobs:
   sanity_test:
