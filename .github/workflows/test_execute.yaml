@@ -1,0 +1,15 @@
+name: Sanity Test Workflow
+on:
+  issues:
+    types: [labeled]
+jobs:
+  sanity_test:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.label.name == 'execute_sanity_test' && github.event.issue.pull_request }}
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v2
+
+      - run: | 
+             echo "label added"
+      # Add steps to run your sanity test here

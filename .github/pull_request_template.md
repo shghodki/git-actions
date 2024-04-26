@@ -2,3 +2,5 @@
 
 ### Action
 - [ ] Execute end to end test
+
+### Application configuration
