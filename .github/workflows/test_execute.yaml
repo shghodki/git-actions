@@ -1,15 +1,29 @@
 name: Sanity Test Workflow
 on:
-  issues:
+  pull_request:
     types: [labeled]
 jobs:
   sanity_test:
     runs-on: ubuntu-latest
-    if: ${{ github.event.label.name == 'execute_sanity_test' && github.event.issue.pull_request }}
+    if: ${{ github.event.label.name == 'execute_sanity_test'}}
     steps:
       - name: Check out repository
         uses: actions/checkout@v2
-
+      - name: validate description
+        env:
+          DESCRIPTION: ${{ github.event.pull_request.body }}
+        run: | 
+              description="${{ github.event.pull_request.body }}"
+              UNCHECKED="\[ \] execute end to end test"
+              MARKED="\[x\] execute end to end test"
+              if echo ${description,,} | grep -q "$MARKED"; then
+                echo "test execution code goes here..."
+              elif echo ${description,,} | grep -q "$UNCHECKED"; then
+                echo "Checkbox is not checked.. skip execution.."
+              else
+                echo "Checkbox not found in pull request description"
+              fi
       - run: | 
              echo "${{ github.event.number }}"
       # Add steps to run your sanity test here
+
