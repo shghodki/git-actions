@@ -11,5 +11,5 @@ jobs:
         uses: actions/checkout@v2
 
       - run: | 
-             echo "label added"
+             echo "${{ github.event.number }}"
       # Add steps to run your sanity test here
