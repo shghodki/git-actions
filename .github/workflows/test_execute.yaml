@@ -31,4 +31,20 @@ jobs:
       - run: | 
              echo "reopened"
       # Add steps to run your sanity test here
+  merged:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.action == 'closed' && github.event.pull_request.merged == true }}
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v2
+      - run: | 
+             echo "merged"
+  closed:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.action == 'closed' && github.event.pull_request.merged != true }}
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v2
+      - run: | 
+             echo "closed"
 
