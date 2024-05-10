@@ -1,7 +1,7 @@
 name: Sanity Test Workflow
 on:
   pull_request:
-    types: [opened, closed, labeled]
+    types: [opened, reopened, closed, labeled]
 jobs:
   labeled:
     runs-on: ubuntu-latest
@@ -15,7 +15,7 @@ jobs:
   
   opened:
     runs-on: ubuntu-latest
-    if: ${{ github.event.action == 'opened'}}
+    if: ${{ github.event.action == 'opened' }}
     steps:
       - name: Check out repository
         uses: actions/checkout@v2
@@ -24,7 +24,7 @@ jobs:
       # Add steps to run your sanity test here
   reopened:
     runs-on: ubuntu-latest
-    if: ${{ github.event.action == 'reopened'}}
+    if: ${{ github.event.action == 'reopened' }}
     steps:
       - name: Check out repository
         uses: actions/checkout@v2
