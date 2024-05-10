@@ -22,4 +22,13 @@ jobs:
       - run: | 
              echo "opened"
       # Add steps to run your sanity test here
+  reopened:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.action == 'reopened'}}
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v2
+      - run: | 
+             echo "reopened"
+      # Add steps to run your sanity test here
 
