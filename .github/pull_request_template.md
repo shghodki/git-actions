@@ -1,6 +1,2 @@
-## DO NOT EDIT
-
-### Action
-- [ ] Execute end to end test
-
-### Application configuration
+## PR details start ##
+## PR details end ##
